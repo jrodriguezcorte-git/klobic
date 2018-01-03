@@ -1,3 +1,48 @@
+<style>
+#mask {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 9000;
+  background-color: #000;
+  display: none;
+}
+
+#boxes .window {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 440px;
+  height: 200px;
+  display: none;
+  z-index: 9999;
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+}
+
+#boxes #dialog {
+  width: 750px;
+  height: 300px;
+  padding: 10px;
+  background-color: #ffffff;
+  font-family: 'Segoe UI Light', sans-serif;
+  font-size: 15pt;
+}
+
+#popupfoot {
+  font-size: 16pt;
+  position: absolute;
+  bottom: 0px;
+  width: 250px;
+  left: 250px;
+}
+
+.close {
+  float: inherit !important;   
+  margin-bottom: 10px;
+}
+</style>
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/views/tpl/head-init.php');
 // load the registration class
@@ -16,6 +61,42 @@ if ($user_list != 'error' && $user_list != 'empty'){
     Redirect('/auth/login.php', false);
     die();
 }
+
+
+$connection->beginTransaction();
+$query= 'SELECT count(*) as count FROM banners WHERE userId=? AND paid=0';
+$banner_list=pdoSelect($query, array($user_id));
+
+$count = $banner_list[0]['count'];
+
+
+if($count < 3){
+        $query='SELECT * FROM banners WHERE id=? AND userId=? AND paid=0';
+        $productResult=pdoSelect($query, array($banner_id, $user_id));
+        /*
+    	$query='UPDATE banners SET paid=? WHERE hash=?';
+    	$result=pdoSet($query,array(1, $productResult[0]['hash']));
+    	$connection->commit(); 
+    	
+    	Redirect('/banner-creator/my-banners/?success='.$productResult[0]['hash'], false);
+        die();
+        */
+        die(var_dump("opcion 1"));
+} else {
+//    die(var_dump("opcion 2"));
+?>    
+<div id="boxes">
+  <div id="dialog" class="window">
+    Your Content Goes Here
+    <div id="popupfoot"> <a class="close"style="color:red;" href="#">Close</a> </div>
+  </div>
+  <div id="mask"></div>
+</div>  
+<?php    
+}
+
+
+
 
 if (!empty($banner_id)){
     $query='SELECT * FROM banners WHERE id=? AND userId=? AND paid=0';
@@ -98,5 +179,49 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/views/tpl/head.php');
     <?php include($_SERVER['DOCUMENT_ROOT'].'/views/tpl/footer.php'); ?>
     <!-- /container -->
 </body>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
+<script>
+$(document).ready(function() {	
 
+var id = '#dialog';
+	
+//Get the screen height and width
+var maskHeight = $(document).height();
+var maskWidth = $(window).width();
+	
+//Set heigth and width to mask to fill up the whole screen
+$('#mask').css({'width':maskWidth,'height':maskHeight});
+
+//transition effect
+$('#mask').fadeIn(500);	
+$('#mask').fadeTo("slow",0.9);	
+	
+//Get the window height and width
+var winH = $(window).height();
+var winW = $(window).width();
+              
+//Set the popup window to center
+$(id).css('top',  winH/8-$(id).height());
+$(id).css('left', winW/2-$(id).width()/2);
+	
+//transition effect
+$(id).fadeIn(2000); 	
+	
+//if close button is clicked
+$('.window .close').click(function (e) {
+//Cancel the link behavior
+e.preventDefault();
+
+$('#mask').hide();
+$('.window').hide();
+});
+
+//if mask is clicked
+$('#mask').click(function () {
+$(this).hide();
+$('.window').hide();
+});
+	
+});
+</script>
 </html>
