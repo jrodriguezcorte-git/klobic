@@ -118,7 +118,7 @@ switch ($group) {
                 <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
             
               <!-- Identify your business so that you can collect the payments. -->
-              <input type="hidden" name="business" value="jonathan-facilitator@adverton.net">
+              <input type="hidden" name="business" value="paypal@klobic.com">
             
               <!-- Specify a Buy Now button. -->
               <input type="hidden" name="cmd" value="_xclick">
@@ -151,10 +151,10 @@ switch ($group) {
                 <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
             
               <!-- Identify your business so that you can collect the payments. -->
-              <input type="hidden" name="business" value="jonathan-facilitator@adverton.net">
+              <input type="hidden" name="business" value="paypal@klobic.com">
             
               <!-- Identify your business so that you can collect the payments. -->
-              <input type="hidden" name="business" value="jonathan-facilitator@adverton.net">
+              <input type="hidden" name="business" value="paypal@klobic.com">
             
               <!-- Specify a Buy Now button. -->
               <input type="hidden" name="cmd" value="_xclick">
@@ -188,10 +188,10 @@ switch ($group) {
                 <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
             
               <!-- Identify your business so that you can collect the payments. -->
-              <input type="hidden" name="business" value="jonathan-facilitator@adverton.net">
+              <input type="hidden" name="business" value="paypal@klobic.com">
             
               <!-- Identify your business so that you can collect the payments. -->
-              <input type="hidden" name="business" value="jonathan-facilitator@adverton.net">
+              <input type="hidden" name="business" value="paypal@klobic.com">
             
               <!-- Specify a Buy Now button. -->
               <input type="hidden" name="cmd" value="_xclick">
@@ -256,7 +256,7 @@ switch ($group) {
                 <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
             
               <!-- Identify your business so that you can collect the payments. -->
-              <input type="hidden" name="business" value="jonathan-facilitator@adverton.net">
+              <input type="hidden" name="business" value="paypal@klobic.com">
             
               <!-- Specify a Buy Now button. -->
               <input type="hidden" name="cmd" value="_xclick">
@@ -284,10 +284,10 @@ switch ($group) {
                 <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
             
               <!-- Identify your business so that you can collect the payments. -->
-              <input type="hidden" name="business" value="jonathan-facilitator@adverton.net">
+              <input type="hidden" name="business" value="paypal@klobic.com">
             
               <!-- Identify your business so that you can collect the payments. -->
-              <input type="hidden" name="business" value="jonathan-facilitator@adverton.net">
+              <input type="hidden" name="business" value="paypal@klobic.com">
             
               <!-- Specify a Buy Now button. -->
               <input type="hidden" name="cmd" value="_xclick">
@@ -321,10 +321,10 @@ switch ($group) {
                 <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
             
               <!-- Identify your business so that you can collect the payments. -->
-              <input type="hidden" name="business" value="jonathan-facilitator@adverton.net">
+              <input type="hidden" name="business" value="paypal@klobic.com">
             
               <!-- Identify your business so that you can collect the payments. -->
-              <input type="hidden" name="business" value="jonathan-facilitator@adverton.net">
+              <input type="hidden" name="business" value="paypal@klobic.com">
             
               <!-- Specify a Buy Now button. -->
               <input type="hidden" name="cmd" value="_xclick">
@@ -388,7 +388,7 @@ switch ($group) {
                 <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
             
               <!-- Identify your business so that you can collect the payments. -->
-              <input type="hidden" name="business" value="jonathan-facilitator@adverton.net">
+              <input type="hidden" name="business" value="paypal@klobic.com">
             
               <!-- Specify a Buy Now button. -->
               <input type="hidden" name="cmd" value="_xclick">
@@ -416,10 +416,10 @@ switch ($group) {
                 <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
             
               <!-- Identify your business so that you can collect the payments. -->
-              <input type="hidden" name="business" value="jonathan-facilitator@adverton.net">
+              <input type="hidden" name="business" value="paypal@klobic.com">
             
               <!-- Identify your business so that you can collect the payments. -->
-              <input type="hidden" name="business" value="jonathan-facilitator@adverton.net">
+              <input type="hidden" name="business" value="paypal@klobic.com">
             
               <!-- Specify a Buy Now button. -->
               <input type="hidden" name="cmd" value="_xclick">
@@ -447,10 +447,10 @@ switch ($group) {
                 <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
             
               <!-- Identify your business so that you can collect the payments. -->
-              <input type="hidden" name="business" value="jonathan-facilitator@adverton.net">
+              <input type="hidden" name="business" value="paypal@klobic.com">
             
               <!-- Identify your business so that you can collect the payments. -->
-              <input type="hidden" name="business" value="jonathan-facilitator@adverton.net">
+              <input type="hidden" name="business" value="paypal@klobic.com">
             
               <!-- Specify a Buy Now button. -->
               <input type="hidden" name="cmd" value="_xclick">
