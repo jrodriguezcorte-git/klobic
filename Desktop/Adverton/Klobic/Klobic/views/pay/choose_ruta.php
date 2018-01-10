@@ -23,7 +23,7 @@
 
 #boxes #dialog {
   width: 750px;
-  height: 630px;
+  height: 450px;
   padding: 10px;
   background-color: #ffffff;
   font-family: 'Segoe UI Light', sans-serif;
@@ -57,81 +57,6 @@
     display: table;
     clear: both;
 }
-
-.pricing__item {
-    background: #f8f9f9;
-    border: none;
-    border-top: 3px solid #f8f9f9;
-    border-radius: 0px;
-    padding: 35px 35px;
-    padding: 2.1875rem 2.1875rem;
-    position: relative;
-    margin-bottom: 30px;
-    margin-bottom: 1.875rem;
-}
-
-.pricing__price {
-    padding: 15px 0px 15px;
-    padding: 0.9375rem 0px 0.9375rem;
-    margin-top: 20px;
-    margin-top: 1.25rem;
-    font-size: 40px;
-    font-size: 2.5rem;
-    border-top: 3px solid rgba(139, 144, 157, 0.1);
-    font-weight: bold;
-    font-family: serif,sans-serif;
-    color: #333333;
-}
-
-.pricing__feature-list {
-    font-style: italic;
-    list-style: outside none none;
-    margin: 0;
-    padding: 0.25em 0 2.5em;
-}
-
-.btn-success:hover {
-    color: #fff;
-    background-color: #449d44;
-    border-color: #419641;
-}   
-
-.btn-theme-primary {
-    background: #03c4eb;
-    color: #FFFFFF;
-}
-
-.btn-lg {
-    font-size: 17px;
-    font-size: 1.0625rem;
-}
-
-.btn-block {
-    display: block;
-    width: 100%;
-}
-
-.btn-group-lg>.btn, .btn-lg {
-    padding: .75rem 1.25rem;
-    font-size: 1.25rem;
-    line-height: 1.333333;
-    border-radius: .3rem;
-}
-
-.btn {
-    text-transform: uppercase;
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    border-radius: 2px;
-    box-shadow: 0 -1px 0 0 rgba(0, 0, 0, 0.1) inset;
-    font-size: 13px;
-    font-size: 0.8125rem;
-    font-weight: 600;
-}    
-
-a:-webkit-any-link {
-    text-decoration: none;
-}    
 </style>
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/views/tpl/head-init.php');
@@ -154,7 +79,7 @@ if ($user_list != 'error' && $user_list != 'empty'){
 
 
 $connection->beginTransaction();
-$query= 'SELECT count(*) as count FROM log_payment WHERE userId=?';
+$query= 'SELECT count(*) as count FROM banners WHERE userId=? AND paid=1';
 $banner_list=pdoSelect($query, array($user_id));
 
 $count = $banner_list[0]['count'];
@@ -174,11 +99,7 @@ switch ($group) {
 
         	$query='UPDATE banners SET paid=? WHERE hash=?';
         	$result=pdoSet($query,array(1, $productResult[0]['hash']));
-        	 
-            $query='INSERT INTO log_payment(userid, paymentgroupid, hash)  VALUES(?, ?, ?)';
-            $result = pdoSet($query, array($user_id,$group,$productResult[0]['hash']));          	
-        	
-        	$connection->commit();
+        	$connection->commit(); 
         	
         	Redirect('/banner-creator/my-banners/?success='.$productResult[0]['hash'], false);
             die();
@@ -191,21 +112,11 @@ switch ($group) {
                  <br>
                  <img src="https://nonstopgroup.net/images/logo.png">
                 <div class="row">
-              <div class="column" >
-                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" class="inline">
-                       <div class="pricing__item">
-                            <h3 class="pricing__title">Plan 10 banners</h3>
-                            <div class="pricing__price"><span class="pricing__currency">$</span>4.99</div>
-                            <div class="pricing__sentense"></div>
-                            <ul class="pricing__feature-list">
-                                <li>+1000 plantillas</li><li>Exporta hasta 10 banners</li>                            </ul>
-                                           <!-- Specify URLs -->
-                <input type='hidden' name='cancel_return' value='https://nonstopgroup.net/pay/success.php'>
-                <input type='hidden' name='return' value='https://nonstopgroup.net/pay/success.php'>
-                <button type="submit" class="stripe-button-el blue" style="visibility: visible; background-color: #339999">
-                    <span style="background-color: #339999; color: white; font-weight: bold;">Comprar</span>
-                </button>
-                       </div>
+              <div class="column" style="background-color:#aaa;">
+                <h2><b>10 Banners</b></h2>
+                <p>Adquierelo por <i>$4.99</i> </p>
+                <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+            
               <!-- Identify your business so that you can collect the payments. -->
               <input type="hidden" name="business" value="paypal@klobic.com">
             
@@ -225,23 +136,23 @@ switch ($group) {
                 <input type="hidden" name="item_plan" value="2">
                 <input type="hidden" name="item_user" value="<?php echo $user_id; ?>">
                 
+                <!-- Specify URLs -->
+                <input type='hidden' name='cancel_return' value='<?php echo DOMAIN_NAME; ?>pay/success.php'>
+                <input type='hidden' name='return' value='<?php echo DOMAIN_NAME; ?>pay/success.php'>
+                <button type="submit" class="stripe-button-el blue" style="visibility: visible;">
+                    <span style="display: block; min-height: 30px;">Paga con Paypal</span>
+                </button>
             </form>
               </div>
-<div class="column" >
-                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" class="inline">
-                       <div class="pricing__item">
-                            <h3 class="pricing__title">Plan 20 banners</h3>
-                            <div class="pricing__price"><span class="pricing__currency">$</span>9.99</div>
-                            <div class="pricing__sentense"></div>
-                            <ul class="pricing__feature-list">
-                                <li>+1000 plantillas</li><li>Exporta hasta 20 banners</li>                            </ul>
-                                           <!-- Specify URLs -->
-                <input type='hidden' name='cancel_return' value='https://nonstopgroup.net/pay/success.php'>
-                <input type='hidden' name='return' value='https://nonstopgroup.net/pay/success.php'>
-                <button type="submit" class="stripe-button-el blue" style="visibility: visible; background-color: #339999">
-                    <span style="background-color: #339999; color: white; font-weight: bold;">Comprar</span>
-                </button>
-                       </div>
+              <div class="column" style="background-color:#bbb;">
+                <h2><b>20 Banners</b></h2>
+                <p>Adquierelo por <i>$8.99</i> </p>
+                <?php  $productPrice = 8.99;	?>
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+            
+              <!-- Identify your business so that you can collect the payments. -->
+              <input type="hidden" name="business" value="paypal@klobic.com">
+            
               <!-- Identify your business so that you can collect the payments. -->
               <input type="hidden" name="business" value="paypal@klobic.com">
             
@@ -250,7 +161,7 @@ switch ($group) {
             
               <!-- Specify details about the item that buyers will purchase. -->
               <input type="hidden" name="item_name" value="20 Banners">
-              <input type="hidden" name="amount" value="9.99">
+              <input type="hidden" name="amount" value="8.99">
               <input type="hidden" name="currency_code" value="USD">
             
               <!-- Display the payment button. -->
@@ -261,23 +172,24 @@ switch ($group) {
                 <input type="hidden" name="item_plan" value="2">
                 <input type="hidden" name="item_user" value="<?php echo $user_id; ?>">
                 
+                <!-- Specify URLs -->
+                <input type='hidden' name='cancel_return' value='<?php echo DOMAIN_NAME; ?>pay/success.php'>
+                <input type='hidden' name='return' value='<?php echo DOMAIN_NAME; ?>pay/success.php'>
+                <button type="submit" class="stripe-button-el blue" style="visibility: visible;">
+                    <span style="display: block; min-height: 30px;">Paga con Paypal</span>
+                </button>
+            
             </form>
               </div>
-<div class="column" >
-                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" class="inline">
-                       <div class="pricing__item">
-                            <h3 class="pricing__title">Plan Ilimitado</h3>
-                            <div class="pricing__price"><span class="pricing__currency">$</span>20</div>
-                            <div class="pricing__sentense"></div>
-                            <ul class="pricing__feature-list">
-                                <li>+1000 plantillas</li><li>Exporta banners ilimitados</li>                            </ul>
-                                           <!-- Specify URLs -->
-                <input type='hidden' name='cancel_return' value='https://nonstopgroup.net/pay/success.php'>
-                <input type='hidden' name='return' value='https://nonstopgroup.net/pay/success.php'>
-                <button type="submit" class="stripe-button-el blue" style="visibility: visible; background-color: #339999">
-                    <span style="background-color: #339999; color: white; font-weight: bold;">Comprar</span>
-                </button>
-                       </div>
+              <div class="column" style="background-color:#ccc;">
+                <h2><b>Ilimitado!</b></h2>
+                <p>Adquierelo por <i>$20</i> </p>     
+                    
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+            
+              <!-- Identify your business so that you can collect the payments. -->
+              <input type="hidden" name="business" value="paypal@klobic.com">
+            
               <!-- Identify your business so that you can collect the payments. -->
               <input type="hidden" name="business" value="paypal@klobic.com">
             
@@ -297,8 +209,16 @@ switch ($group) {
                 <input type="hidden" name="item_plan" value="2">
                 <input type="hidden" name="item_user" value="<?php echo $user_id; ?>">
                 
-            </form>
-              </div>              
+                <!-- Specify URLs -->
+                <input type='hidden' name='cancel_return' value='<?php echo DOMAIN_NAME; ?>pay/success.php'>
+                <input type='hidden' name='return' value='<?php echo DOMAIN_NAME; ?>pay/success.php'>
+                <button type="submit" class="stripe-button-el blue" style="visibility: visible;">
+                    <span style="display: block; min-height: 30px;">Paga con Paypal</span>
+                </button>
+            
+            </form>        
+                
+              </div>
             </div>
                 <br><br><br>
                 <div id="popupfoot"> <a class="close"style="color:red;" href="#">Close</a> </div>
@@ -316,12 +236,8 @@ switch ($group) {
 
         	$query='UPDATE banners SET paid=? WHERE hash=?';
         	$result=pdoSet($query,array(1, $productResult[0]['hash']));
-        	
-            $query='INSERT INTO log_payment(userid, paymentgroupid, hash)  VALUES(?, ?, ?)';
-            $result = pdoSet($query, array($user_id,$group,$productResult[0]['hash']));        	
-        	
         	$connection->commit(); 
-        	        	
+        	
         	Redirect('/banner-creator/my-banners/?success='.$productResult[0]['hash'], false);
             die();
                    
@@ -334,19 +250,11 @@ switch ($group) {
                  <br>
                  <img src="https://nonstopgroup.net/images/logo.png">
                 <div class="row">
-              <div class="column" >
-                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" class="inline">
-                       <div class="pricing__item">
-                            <h3 class="pricing__title">Plan 10 banners</h3>
-                            <div class="pricing__price"><span class="pricing__currency">$</span>4.99</div>
-                            <div class="pricing__sentense"></div>
-                            <ul class="pricing__feature-list">
-                                <li>+1000 plantillas</li><li>Exporta hasta 10 banners</li>                            </ul>
-                                           <!-- Specify URLs -->
-                <input type='hidden' name='cancel_return' value='https://nonstopgroup.net/pay/success.php'>
-                <input type='hidden' name='return' value='https://nonstopgroup.net/pay/success.php'>
-
-                       </div>
+              <div class="column" style="background-color:#aaa;">
+                <h2><b>10 Banners</b></h2>
+                <p>Adquierelo por <i>$4.99</i> </p>
+                <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+            
               <!-- Identify your business so that you can collect the payments. -->
               <input type="hidden" name="business" value="paypal@klobic.com">
             
@@ -366,23 +274,18 @@ switch ($group) {
                 <input type="hidden" name="item_plan" value="2">
                 <input type="hidden" name="item_user" value="<?php echo $user_id; ?>">
                 
+                
             </form>
               </div>
-<div class="column" >
-                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" class="inline">
-                       <div class="pricing__item">
-                            <h3 class="pricing__title">Plan 20 banners</h3>
-                            <div class="pricing__price"><span class="pricing__currency">$</span>9.99</div>
-                            <div class="pricing__sentense"></div>
-                            <ul class="pricing__feature-list">
-                                <li>+1000 plantillas</li><li>Exporta hasta 20 banners</li>                            </ul>
-                                           <!-- Specify URLs -->
-                <input type='hidden' name='cancel_return' value='https://nonstopgroup.net/pay/success.php'>
-                <input type='hidden' name='return' value='https://nonstopgroup.net/pay/success.php'>
-                <button type="submit" class="stripe-button-el blue" style="visibility: visible; background-color: #339999">
-                    <span style="background-color: #339999; color: white; font-weight: bold;">Comprar</span>
-                </button>
-                       </div>
+              <div class="column" style="background-color:#bbb;">
+                <h2><b>20 Banners</b></h2>
+                <p>Adquierelo por <i>$8.99</i> </p>
+                <?php  $productPrice = 8.99;	?>
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+            
+              <!-- Identify your business so that you can collect the payments. -->
+              <input type="hidden" name="business" value="paypal@klobic.com">
+            
               <!-- Identify your business so that you can collect the payments. -->
               <input type="hidden" name="business" value="paypal@klobic.com">
             
@@ -391,7 +294,7 @@ switch ($group) {
             
               <!-- Specify details about the item that buyers will purchase. -->
               <input type="hidden" name="item_name" value="20 Banners">
-              <input type="hidden" name="amount" value="9.99">
+              <input type="hidden" name="amount" value="8.99">
               <input type="hidden" name="currency_code" value="USD">
             
               <!-- Display the payment button. -->
@@ -399,26 +302,27 @@ switch ($group) {
               src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >
             
               <!-- Specify details about the item that buyers will purchase. -->
-                <input type="hidden" name="item_plan" value="3">
+                <input type="hidden" name="item_plan" value="2">
                 <input type="hidden" name="item_user" value="<?php echo $user_id; ?>">
                 
+                <!-- Specify URLs -->
+                <input type='hidden' name='cancel_return' value='<?php echo DOMAIN_NAME; ?>pay/success.php'>
+                <input type='hidden' name='return' value='<?php echo DOMAIN_NAME; ?>pay/success.php'>
+                <button type="submit" class="stripe-button-el blue" style="visibility: visible;">
+                    <span style="display: block; min-height: 30px;">Paga con Paypal</span>
+                </button>
+            
             </form>
               </div>
-<div class="column" >
-                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" class="inline">
-                       <div class="pricing__item">
-                            <h3 class="pricing__title">Plan Ilimitado</h3>
-                            <div class="pricing__price"><span class="pricing__currency">$</span>20</div>
-                            <div class="pricing__sentense"></div>
-                            <ul class="pricing__feature-list">
-                                <li>+1000 plantillas</li><li>Exporta banners ilimitados</li>                            </ul>
-                                           <!-- Specify URLs -->
-                <input type='hidden' name='cancel_return' value='https://nonstopgroup.net/pay/success.php'>
-                <input type='hidden' name='return' value='https://nonstopgroup.net/pay/success.php'>
-                <button type="submit" class="stripe-button-el blue" style="visibility: visible; background-color: #339999">
-                    <span style="background-color: #339999; color: white; font-weight: bold;">Comprar</span>
-                </button>
-                       </div>
+              <div class="column" style="background-color:#ccc;">
+                <h2><b>Ilimitado!</b></h2>
+                <p>Adquierelo por <i>$20</i> </p>     
+                    
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+            
+              <!-- Identify your business so that you can collect the payments. -->
+              <input type="hidden" name="business" value="paypal@klobic.com">
+            
               <!-- Identify your business so that you can collect the payments. -->
               <input type="hidden" name="business" value="paypal@klobic.com">
             
@@ -435,11 +339,19 @@ switch ($group) {
               src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >
             
               <!-- Specify details about the item that buyers will purchase. -->
-                <input type="hidden" name="item_plan" value="3">
+                <input type="hidden" name="item_plan" value="2">
                 <input type="hidden" name="item_user" value="<?php echo $user_id; ?>">
                 
-            </form>
-              </div>              
+                <!-- Specify URLs -->
+                <input type='hidden' name='cancel_return' value='<?php echo DOMAIN_NAME; ?>pay/success.php'>
+                <input type='hidden' name='return' value='<?php echo DOMAIN_NAME; ?>pay/success.php'>
+                <button type="submit" class="stripe-button-el blue" style="visibility: visible;">
+                    <span style="display: block; min-height: 30px;">Paga con Paypal</span>
+                </button>
+            
+            </form>        
+                
+              </div>
             </div>
                 <br><br><br>
                 <div id="popupfoot"> <a class="close"style="color:red;" href="#">Close</a> </div>
@@ -457,10 +369,6 @@ switch ($group) {
 
         	$query='UPDATE banners SET paid=? WHERE hash=?';
         	$result=pdoSet($query,array(1, $productResult[0]['hash']));
-        	
-            $query='INSERT INTO log_payment(userid, paymentgroupid, hash)  VALUES(?, ?, ?)';
-            $result = pdoSet($query, array($user_id,$group,$productResult[0]['hash']));        	
-        	
         	$connection->commit(); 
         	
         	Redirect('/banner-creator/my-banners/?success='.$productResult[0]['hash'], false);
@@ -474,19 +382,11 @@ switch ($group) {
                  <br>
                  <img src="https://nonstopgroup.net/images/logo.png">
                 <div class="row">
-              <div class="column" >
-                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" class="inline">
-                       <div class="pricing__item">
-                            <h3 class="pricing__title">Plan 10 banners</h3>
-                            <div class="pricing__price"><span class="pricing__currency">$</span>4.99</div>
-                            <div class="pricing__sentense"></div>
-                            <ul class="pricing__feature-list">
-                                <li>+1000 plantillas</li><li>Exporta hasta 10 banners</li>                            </ul>
-                                           <!-- Specify URLs -->
-                <input type='hidden' name='cancel_return' value='https://nonstopgroup.net/pay/success.php'>
-                <input type='hidden' name='return' value='https://nonstopgroup.net/pay/success.php'>
-
-                       </div>
+              <div class="column" style="background-color:#aaa;">
+                <h2><b>10 Banners</b></h2>
+                <p>Adquierelo por <i>$4.99</i> </p>
+                <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+            
               <!-- Identify your business so that you can collect the payments. -->
               <input type="hidden" name="business" value="paypal@klobic.com">
             
@@ -503,24 +403,21 @@ switch ($group) {
               src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >
             
               <!-- Specify details about the item that buyers will purchase. -->
-                <input type="hidden" name="item_plan" value="4">
+                <input type="hidden" name="item_plan" value="2">
                 <input type="hidden" name="item_user" value="<?php echo $user_id; ?>">
                 
+
             </form>
               </div>
-<div class="column" >
-                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" class="inline">
-                       <div class="pricing__item">
-                            <h3 class="pricing__title">Plan 20 banners</h3>
-                            <div class="pricing__price"><span class="pricing__currency">$</span>9.99</div>
-                            <div class="pricing__sentense"></div>
-                            <ul class="pricing__feature-list">
-                                <li>+1000 plantillas</li><li>Exporta hasta 20 banners</li>                            </ul>
-                                           <!-- Specify URLs -->
-                <input type='hidden' name='cancel_return' value='https://nonstopgroup.net/pay/success.php'>
-                <input type='hidden' name='return' value='https://nonstopgroup.net/pay/success.php'>
-
-                       </div>
+              <div class="column" style="background-color:#bbb;">
+                <h2><b>20 Banners</b></h2>
+                <p>Adquierelo por <i>$8.99</i> </p>
+                <?php  $productPrice = 8.99;	?>
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+            
+              <!-- Identify your business so that you can collect the payments. -->
+              <input type="hidden" name="business" value="paypal@klobic.com">
+            
               <!-- Identify your business so that you can collect the payments. -->
               <input type="hidden" name="business" value="paypal@klobic.com">
             
@@ -529,7 +426,7 @@ switch ($group) {
             
               <!-- Specify details about the item that buyers will purchase. -->
               <input type="hidden" name="item_name" value="20 Banners">
-              <input type="hidden" name="amount" value="9.99">
+              <input type="hidden" name="amount" value="8.99">
               <input type="hidden" name="currency_code" value="USD">
             
               <!-- Display the payment button. -->
@@ -537,26 +434,21 @@ switch ($group) {
               src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >
             
               <!-- Specify details about the item that buyers will purchase. -->
-                <input type="hidden" name="item_plan" value="4">
+                <input type="hidden" name="item_plan" value="2">
                 <input type="hidden" name="item_user" value="<?php echo $user_id; ?>">
                 
+            
             </form>
               </div>
-<div class="column" >
-                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" class="inline">
-                       <div class="pricing__item">
-                            <h3 class="pricing__title">Plan Ilimitado</h3>
-                            <div class="pricing__price"><span class="pricing__currency">$</span>20</div>
-                            <div class="pricing__sentense"></div>
-                            <ul class="pricing__feature-list">
-                                <li>+1000 plantillas</li><li>Exporta banners ilimitados</li>                            </ul>
-                                           <!-- Specify URLs -->
-                <input type='hidden' name='cancel_return' value='https://nonstopgroup.net/pay/success.php'>
-                <input type='hidden' name='return' value='https://nonstopgroup.net/pay/success.php'>
-                <button type="submit" class="stripe-button-el blue" style="visibility: visible; background-color: #339999">
-                    <span style="background-color: #339999; color: white; font-weight: bold;">Comprar</span>
-                </button>
-                       </div>
+              <div class="column" style="background-color:#ccc;">
+                <h2><b>Ilimitado!</b></h2>
+                <p>Adquierelo por <i>$20</i> </p>     
+                    
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+            
+              <!-- Identify your business so that you can collect the payments. -->
+              <input type="hidden" name="business" value="paypal@klobic.com">
+            
               <!-- Identify your business so that you can collect the payments. -->
               <input type="hidden" name="business" value="paypal@klobic.com">
             
@@ -573,11 +465,19 @@ switch ($group) {
               src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >
             
               <!-- Specify details about the item that buyers will purchase. -->
-                <input type="hidden" name="item_plan" value="4">
+                <input type="hidden" name="item_plan" value="2">
                 <input type="hidden" name="item_user" value="<?php echo $user_id; ?>">
                 
-            </form>
-              </div>              
+                <!-- Specify URLs -->
+                <input type='hidden' name='cancel_return' value='<?php echo DOMAIN_NAME; ?>pay/success.php'>
+                <input type='hidden' name='return' value='<?php echo DOMAIN_NAME; ?>pay/success.php'>
+                <button type="submit" class="stripe-button-el blue" style="visibility: visible;">
+                    <span style="display: block; min-height: 30px;">Paga con Paypal</span>
+                </button>
+            
+            </form>        
+                
+              </div>
             </div>
                 <br><br><br>
                 <div id="popupfoot"> <a class="close"style="color:red;" href="#">Close</a> </div>
@@ -595,10 +495,6 @@ switch ($group) {
 
         	$query='UPDATE banners SET paid=? WHERE hash=?';
         	$result=pdoSet($query,array(1, $productResult[0]['hash']));
-        	
-             $query='INSERT INTO log_payment(userid, paymentgroupid, hash)  VALUES(?, ?, ?)';
-            $result = pdoSet($query, array($user_id,$group,$productResult[0]['hash'])); 
-            
         	$connection->commit(); 
         	
         	Redirect('/banner-creator/my-banners/?success='.$productResult[0]['hash'], false);
@@ -690,7 +586,7 @@ $(document).ready(function() {
 var id = '#dialog';
 	
 //Get the screen height and width
-var maskHeight = $(document).height()+300;
+var maskHeight = $(document).height();
 var maskWidth = $(window).width();
 	
 //Set heigth and width to mask to fill up the whole screen

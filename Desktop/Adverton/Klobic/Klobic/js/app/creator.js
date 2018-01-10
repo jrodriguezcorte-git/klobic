@@ -61629,7 +61629,7 @@
                             className: S(y.default.bannerBuyContainer),
                             onClick: this.props.onBuyClick,
                         }, u.default.createElement("span", {},
-                        this.getBannerState(), "Get it!"));
+                        this.getBannerState(), "Descargar"));
                     
                     return this.props.bannerData && this.props.bannerData.name ? 
                         u.default.createElement("div", {},

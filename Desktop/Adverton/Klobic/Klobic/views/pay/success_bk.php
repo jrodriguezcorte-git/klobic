@@ -100,41 +100,6 @@ else if(empty($currency_code)) $currency_code = '';
 if(!empty($_GET['st'])) $payment_status = $_GET['st'];
 else if(empty($payment_status)) $payment_status = '';
 
-$email = $_SESSION['user_email'];
-$query='SELECT * FROM users WHERE email=?';
-$user_list=pdoSelect($query, array($email));
-
-if ($user_list != 'error' && $user_list != 'empty'){
-    $user_id = $user_list[0]['id'];
-    
-} else {
-    Redirect('/auth/login.php', false);
-    die();
-}
-
-//$payment_gross = 4.99;
-//$payment_gross = 8.99;
-//$payment_gross = 20;
-//$txn_id = 20;
-//$currency_code = "USD";
-//$payment_status = true;
-
-    if (!empty($payment_gross) && !empty($txn_id) && !empty($payment_gross) && !empty($currency_code) && !empty($payment_status) && $payment_gross >= 1) {
-                if ($payment_gross == 4.99) {
-                    $item_plan = 2;
-                }
-                if ($payment_gross == 9.99) {
-                    $item_plan = 3;
-                }
-                if ($payment_gross == 20) {
-                    $item_plan = 4;
-                }   
-                $query='UPDATE payment_user_group SET paymentgroupid=? WHERE userid=?';
-                $result = pdoSet($query, array($item_plan,$user_id));  
-                Redirect('/banner-creator/my-banners/', false);                
-    }
-
-
 if(!empty($banner_hash) && !empty($txn_id) && !empty($payment_gross) && !empty($currency_code) && !empty($payment_status)){
     $banner_hash = rtrim($banner_hash,")");
     $banner_hash = get_item_number($banner_hash);
