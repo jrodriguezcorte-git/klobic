@@ -50,23 +50,23 @@ class Registration
 	        // Run CSRF check, on POST data, in exception mode, for 10 minutes, in one-time mode.
 	        NoCSRF::check( 'csrf_token', $_POST, true, 60*10, true );		
 	        if (empty($_POST['user_name'])) {
-	            $this->errors[] = "Empty Username";
+	            $this->errors[] = "Usuario Vacío";
 	        } elseif (empty($_POST['user_password_new']) || empty($_POST['user_password_repeat'])) {
-	            $this->errors[] = "Empty Password";
+	            $this->errors[] = "Contraseña Vacía";
 	        } elseif ($_POST['user_password_new'] !== $_POST['user_password_repeat']) {
-	            $this->errors[] = "Password and password repeat are not the same";
+	            $this->errors[] = "La contraseña y la contraseña repetida no son iguales";
 	        } elseif (strlen($_POST['user_password_new']) < 6) {
-	            $this->errors[] = "Password has a minimum length of 6 characters";
+	            $this->errors[] = "La contraseña debe tener un mínimo de longitud de 6 caracteres";
 	        } elseif (strlen($_POST['user_name']) > 64 || strlen($_POST['user_name']) < 2) {
-	            $this->errors[] = "Name cannot be shorter than 2 or longer than 64 characters";
+	            $this->errors[] = "El nombre no puede ser más corte de 2 o más largo de 64 caracteres";
 	        } elseif (!preg_match('/^[a-zA-Z0-9\s]{2,64}$/i', $_POST['user_name'])) {
-	            $this->errors[] = "Name does not fit the name scheme: only a-Z and numbers are allowed, 2 to 64 characters";
+	            $this->errors[] = "El nombre no hace fit con el nombre del schema: únicamente a-Z y números son permitidos, 2 a 64 caracteres";
 	        } elseif (empty($_POST['user_email'])) {
-	            $this->errors[] = "Email cannot be empty";
+	            $this->errors[] = "Email no puede ser vacío";
 	        } elseif (strlen($_POST['user_email']) > 64) {
-	            $this->errors[] = "Email cannot be longer than 64 characters";
+	            $this->errors[] = "Email no puede ser más largo de 64 caracteres";
 	        } elseif (!filter_var($_POST['user_email'], FILTER_VALIDATE_EMAIL)) {
-	            $this->errors[] = "Your email address is not in a valid email format";
+	            $this->errors[] = "El correo no tiene un válido formato";
 	        } elseif (!empty($_POST['user_name'])
 	            && strlen($_POST['user_name']) <= 64
 	            && strlen($_POST['user_name']) >= 2
@@ -110,7 +110,7 @@ class Registration
 					$query_check_user_name->close();
 	
 	                if (!empty($email)) {
-	                    $this->errors[] = "Sorry, that email address is already taken.";
+	                    $this->errors[] = "Disculpe, la dirección de correo ya ha sido tomada.";
 	                } else {
 	                    // write new user's data into database
 	                    $sql = "INSERT INTO users (name, password_hash, email) VALUES (?, ?, ?)";
@@ -126,24 +126,24 @@ class Registration
 							$login = new Login(true);
 							$login->doLogin($user_email, $user_password);
     						// Redirect('/', false);
-	                        $this->messages[] = "Your account has been created successfully. You can now log in.";
+	                        $this->messages[] = "Su cuenta ha sido creada exitosamente. Puede iniciar sesión";
 	                        
 	                    } else {
-	                        $this->errors[] = "Sorry, your registration failed. Please go back and try again.";
+	                        $this->errors[] = "Disculpe, su registro ha fallado. Por favor retroceda e intente nuevamente.";
 	                    }
 	                }
 	            } else {
-	                $this->errors[] = "Sorry, no database connection.";
+	                $this->errors[] = "Disculpe, no hay conexión con la base de datos.";
 	            }
 	        } else {
-	            $this->errors[] = "An unknown error occurred.";
+	            $this->errors[] = "Un error desconocido ha ocurrido.";
 	        }
-	        $this->messages[] = 'CSRF check passed. Form parsed.';
+	        $this->messages[] = 'CSRF check ha pasado.';
 	      }
 	      catch( Exception $e ){
 	      	// CSRF attack detected
 	        // $result = $e->getMessage() . ' Form ignored.';
-	        $result = 'Invalid token. Please <a href="/auth/signup.php">reload this page</a>.';
+	        $result = 'Token Inválido. Por favor <a href="/auth/signup.php">recarga la página</a>.';
 	        $this->errors[] = $result;
 	      }		  
     }
@@ -159,9 +159,9 @@ class Registration
 		        if (empty($_POST['user_password_new']) || empty($_POST['user_password_repeat'])) {
 		            $this->errors[] = "Empty Password";
 		        } elseif ($_POST['user_password_new'] !== $_POST['user_password_repeat']) {
-		            $this->errors[] = "Password and password repeat are not the same";
+		            $this->errors[] = "La Contraseña y la contraseña repetida es la misma";
 		        } elseif (strlen($_POST['user_password_new']) < 6) {
-		            $this->errors[] = "Password has a minimum length of 6 characters";
+		            $this->errors[] = "La contraseña tiene un mínimo de 6 caracteres";
 		        }
 	        }
 	        
@@ -170,21 +170,21 @@ class Registration
 	        
 	        if(!$_SESSION['need_change_password']){
 		        if (empty($_POST['user_email'])) {
-		            $this->errors[] = "Email cannot be empty";
+		            $this->errors[] = "Email no puede ser vacío";
 		            
 		        } elseif (empty($_POST['user_name'])) {
-		            $this->errors[] = "Empty Username";
+		            $this->errors[] = "Usuario vacío";
 		            
 		        } elseif (strlen($_POST['user_name']) > 64 || strlen($_POST['user_name']) < 2) {
-		    		$this->errors[] = "Name cannot be shorter than 2 or longer than 64 characters";
+		    		$this->errors[] = "Nombre no puede tener menos de 2 caracteres y más de 64";
 		    		
 		        } elseif (!preg_match('/^[a-zA-Z\s]{2,64}$/i', $_POST['user_name'])) {
-		            $this->errors[] = "Name does not fit the name scheme: only a-Z and numbers are allowed, 2 to 64 characters";
+		            $this->errors[] = "Nombre no encaja con el esquema: únicamente a-Z y números son permitidos, 2 a 64 caracteres";
 		        
 		        } elseif (strlen($_POST['user_email']) > 64) {
-		            $this->errors[] = "Email cannot be longer than 64 characters";
+		            $this->errors[] = "Email no puede ser mayor a 64 caracteres";
 		        } elseif (!filter_var($_POST['user_email'], FILTER_VALIDATE_EMAIL)) {
-		            $this->errors[] = "Your email address is not in a valid email format";
+		            $this->errors[] = "Tu dirección de correo no se encuentra en un formato válido";
 		        }
 		        
 	        	$check = !empty($_POST['user_email'])
@@ -247,7 +247,7 @@ class Registration
 	                if (empty($email) || (!empty($email) && $email == $_SESSION['user_email'])) {
 	                	if(!$_SESSION['need_change_password']){
 	                		if(!password_verify($old_password, $password_hash)){
-	                			$this->errors[] = "Sorry, the old password doesn't match.";
+	                			$this->errors[] = "Disculpe, la contraseña antigua no coincide";
 	                			return;
 	                		}
 	                	}
@@ -266,31 +266,31 @@ class Registration
 	
 	                    // if user has been added successfully
 	                    if ($query_user_update) {
-	                        $this->messages[] = "Your account has been updated successfully.";
+	                        $this->messages[] = "Tu cuenta ha sido actualizada de forma exitosa.";
 							$_SESSION['user_email'] = $user_email;
 							$_SESSION['user_name'] = $user_name;
 	                        $_SESSION['need_change_password'] = 0;
 	                        	
 	                    } else {
-	                        $this->errors[] = "Sorry, account update failed. Please go back and try again.";
+	                        $this->errors[] = "Disculpe, la actualización falló. Por favor ve hacia atrás e intente nuevamente.";
 	                    }
                     
 	                } else {
-	                    $this->errors[] = "Sorry, that username / email address is already taken.";
+	                    $this->errors[] = "Disculpe, el usuario / email ya ha sido tomado.";
 	                }
 	            } else {
-	                $this->errors[] = "Sorry, no database connection.";
+	                $this->errors[] = "Disculpe, no hay conexión con la base de datos.";
 	            }
 	        } else {
-	            $this->errors[] = "An unknown error occurred.";
+	            $this->errors[] = "Un error desconocido ha ocurrido.";
 	        }
 		        
-	        $this->messages[] = 'CSRF check passed. Form parsed.';
+	        $this->messages[] = 'CSRF ha pasado.';
         
 	    } catch( Exception $e ){
 	      	// CSRF attack detected
 	        // $result = $e->getMessage() . ' Form ignored.';
-	        $result = 'Invalid token. Please <a href="/account">reload this page</a>.';
+	        $result = 'Token Inválido por favor, <a href="/account">recargar la página</a>.';
 	        $this->errors[] = $result;
 	    }	
     }

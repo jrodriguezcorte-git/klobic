@@ -22697,7 +22697,7 @@
         fontWeight: [400, 900],
         fontWeightItalic: []
     }, {
-        fontName: "Covered By Your Grace",
+        fontName: "Portadaed By Your Grace",
         fontWeight: [400],
         fontWeightItalic: []
     }, {
@@ -23537,7 +23537,7 @@
         value: !0
     }), t.default = {
         displayAds: [{
-            label: "Medium Rectangle",
+            label: "Rectángulo Mediano",
             size: {
                 width: 300,
                 height: 250
@@ -23547,7 +23547,7 @@
                 height: 60
             }
         }, {
-            label: "Large Rectangle",
+            label: "Rectángulo Largo",
             size: {
                 width: 336,
                 height: 280
@@ -23567,7 +23567,7 @@
                 height: 20
             }
         }, {
-            label: "Mobile",
+            label: "Móvil",
             size: {
                 width: 320,
                 height: 50
@@ -23577,7 +23577,7 @@
                 height: 12
             }
         }, {
-            label: "Large Mobile",
+            label: "Móvil Ancho",
             size: {
                 width: 320,
                 height: 100
@@ -23587,7 +23587,7 @@
                 height: 24
             }
         }, {
-            label: "Half Page",
+            label: "Mitad de Página",
             size: {
                 width: 300,
                 height: 600
@@ -23597,7 +23597,7 @@
                 height: 100
             }
         }, {
-            label: "Wide Skyscraper",
+            label: "Ancho de Rascacielos",
             size: {
                 width: 160,
                 height: 600
@@ -23607,7 +23607,7 @@
                 height: 100
             }
         }, {
-            label: "Skyscraper",
+            label: "Rascacielo",
             size: {
                 width: 120,
                 height: 600
@@ -23617,7 +23617,7 @@
                 height: 100
             }
         }, {
-            label: "Square",
+            label: "Cuadrado",
             size: {
                 width: 250,
                 height: 250
@@ -23627,7 +23627,7 @@
                 height: 60
             }
         }, {
-            label: "Small Square",
+            label: "Cuadrado Pequeño",
             size: {
                 width: 200,
                 height: 200
@@ -23637,7 +23637,7 @@
                 height: 50
             }
         }, {
-            label: "Main Banner",
+            label: "Banner Principal",
             size: {
                 width: 468,
                 height: 60
@@ -23648,10 +23648,10 @@
             }
         }, {
             custom: !0,
-            label: "Custom size"
+            label: "Tamaño personalizado"
         }],
         facebook: [{
-            label: "Facebook Cover",
+            label: "Facebook Portada",
             size: {
                 width: 851,
                 height: 315
@@ -23718,7 +23718,7 @@
             }
         }],
         twitter: [{
-            label: "Twitter Cover",
+            label: "Twitter Portada",
             size: {
                 width: 1500,
                 height: 500
@@ -23763,7 +23763,7 @@
             }
         }],
         youtube: [{
-            label: "YouTube Channel Cover",
+            label: "YouTube Channel Portada",
             size: {
                 width: 2580,
                 height: 1440
@@ -23797,7 +23797,7 @@
                 height: 100
             }
         }, {
-            label: "Google Plus Cover",
+            label: "Google Plus Portada",
             size: {
                 width: 1080,
                 height: 608
@@ -23808,7 +23808,7 @@
                 height: 55
             }
         }, {
-            label: "LinkedIn Cover",
+            label: "LinkedIn Portada",
             size: {
                 width: 1400,
                 height: 425
@@ -23842,7 +23842,7 @@
             }
         }, {
             custom: !0,
-            label: "Custom size"
+            label: "Tamaño personalizado"
         }]
     }
 }, function(e, t) {
@@ -23878,7 +23878,7 @@
             static: []
         }
     }, {
-        name: "Mobile",
+        name: "Móvil",
         width: 320,
         height: 50,
         group: "display",
@@ -23914,7 +23914,7 @@
             static: []
         }
     }, {
-        name: "Skyscraper",
+        name: "Rascacielo",
         width: 120,
         height: 600,
         group: "display",
@@ -23923,7 +23923,7 @@
             static: []
         }
     }, {
-        name: "Square",
+        name: "Cuadrado",
         width: 250,
         height: 250,
         group: "display",
@@ -45905,7 +45905,7 @@
                         className: m("element", "youtubeElement"),
                         style: a
                     }, c.default.createElement("div", {
-                        className: h.default.youtubeCover,
+                        className: h.default.youtubePortada,
                         style: {
                             backgroundImage: "url(" + this.getThumbUrl(r) + ")"
                         }
@@ -47730,7 +47730,7 @@
         setProportion: l.PropTypes.bool
     }, x.defaultProps = {
         bannersSizeList: [{
-            name: "Custom size"
+            name: "Tamaño personalizado"
         }],
         selectedWidth: 300,
         selectedHeight: 250
@@ -60057,7 +60057,7 @@
                         className: m.default.circle
                     }, c.default.createElement(p.default, {
                         percentage: e.mobile,
-                        label: g.default.deviceMobile,
+                        label: g.default.deviceMóvil,
                         skin: "cyan",
                         placement: e.placement,
                         fontSize: e.fontSize
@@ -61629,7 +61629,7 @@
                             className: S(y.default.bannerBuyContainer),
                             onClick: this.props.onBuyClick,
                         }, u.default.createElement("span", {},
-                        this.getBannerState(), "Descargar"));
+                        this.getBannerState(), "Buy"));
                     
                     return this.props.bannerData && this.props.bannerData.name ? 
                         u.default.createElement("div", {},
@@ -62225,7 +62225,7 @@
                     })), u.default.createElement("div", {
                         className: N(f.default.button)
                     }, u.default.createElement(x.default, {
-                        label: "Create a banner",
+                        label: "Crear un banner",
                         size: "medium",
                         skin: "purple",
                         onClick: this.props.onCreateBannerClick
@@ -68275,7 +68275,7 @@
             properties: {
                 lastId: 0,
                 customSize: {
-                    label: "Custom size",
+                    label: "Tamaño personalizado",
                     element: "radio",
                     cat: "Size",
                     default: !0
@@ -68290,8 +68290,8 @@
                     type: "String",
                     element: "combobox",
                     default: "300 x 250 - Medium rectangle",
-                    values: ["300 x 250 - Medium rectangle", "728 x 90 - Leaderboard", "160 x 600 - Wide skyscraper", "320 x 50 - Mobile", "600 x 315 - Facebook ad", "300 x 600 - Half page ad", "120 x 600 - Skyscraper", "200 x 200 - Small square", "336 x 280 - Large rectangle", "250 x 250 - Square", "728 x 360 - Big leaderboard", "550 x 400 - Greeting card", "468 x 60 - Full banner", "435 x 150 - Med. ext. network", "435 x 75 - Small. ext. network", "435 x 300 - Large. ext. netwotk", "180 x 150 - Rectangle", "125 x 125 - Small rectangle", "120 x 240 - Vertical banner"],
-                    labels: ["300 x 250 - Medium rectangle", "728 x 90 - Leaderboard", "160 x 600 - Wide skyscraper", "320 x 50 - Mobile", "600 x 315 - Facebook ad", "300 x 600 - Half page ad", "120 x 600 - Skyscraper", "200 x 200 - Small square", "336 x 280 - Large rectangle", "250 x 250 - Square", "728 x 360 - Big leaderboard", "550 x 400 - Greeting card", "468 x 60 - Full banner", "435 x 150 - Med. ext. network", "435 x 75 - Small. ext. network", "435 x 300 - Large. ext. netwotk", "180 x 150 - Rectangle", "125 x 125 - Small rectangle", "120 x 240 - Vertical banner"],
+                    values: ["300 x 250 - Medium rectangle", "728 x 90 - Leaderboard", "160 x 600 - Wide skyscraper", "320 x 50 - Móvil", "600 x 315 - Facebook ad", "300 x 600 - Half page ad", "120 x 600 - Rascacielo", "200 x 200 - Small square", "336 x 280 - Large rectangle", "250 x 250 - Cuadrado", "728 x 360 - Big leaderboard", "550 x 400 - Greeting card", "468 x 60 - Full banner", "435 x 150 - Med. ext. network", "435 x 75 - Small. ext. network", "435 x 300 - Large. ext. netwotk", "180 x 150 - Rectangle", "125 x 125 - Small rectangle", "120 x 240 - Vertical banner"],
+                    labels: ["300 x 250 - Medium rectangle", "728 x 90 - Leaderboard", "160 x 600 - Wide skyscraper", "320 x 50 - Móvil", "600 x 315 - Facebook ad", "300 x 600 - Half page ad", "120 x 600 - Rascacielo", "200 x 200 - Small square", "336 x 280 - Large rectangle", "250 x 250 - Cuadrado", "728 x 360 - Big leaderboard", "550 x 400 - Greeting card", "468 x 60 - Full banner", "435 x 150 - Med. ext. network", "435 x 75 - Small. ext. network", "435 x 300 - Large. ext. netwotk", "180 x 150 - Rectangle", "125 x 125 - Small rectangle", "120 x 240 - Vertical banner"],
                     cat: "Size"
                 },
                 width: {
@@ -86319,7 +86319,7 @@
             o = n(882),
             i = n(742),
             s = n(590),
-            l = !!t.navigator && /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(t.navigator.userAgent),
+            l = !!t.navigator && /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMóvil|Opera Mini/i.test(t.navigator.userAgent),
             c = i && l,
             u = function(e) {
                 this.config = e
@@ -88060,7 +88060,7 @@
         animateHelper: "Youtube__animateHelper",
         element: "Youtube__element",
         innerElement: "Youtube__innerElement",
-        youtubeCover: "Youtube__youtubeCover"
+        youtubePortada: "Youtube__youtubePortada"
     }
 }, function(e, t) {
     e.exports = {

@@ -30,20 +30,20 @@ if ($login->isUserLoggedIn() == true) {
                     <input type="email" name="user_email" class="form-control" id="login_input_email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" placeholder="Email" />
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" id="password" name="user_password" id="login_input_password" placeholder="Password" />
+                    <input type="password" class="form-control" id="password" name="user_password" id="login_input_password" placeholder="Contraseña" />
                     <div class="right">
-                        <a href="forgot.php">Forgot your password?</a>
+                        <a href="forgot.php">¿Olvidó su contraseña?</a>
                     </div>
                 </div>
                 <div class="checkbox right">
                     <label class="remember" for="remember">
                         <input type="checkbox" id="remember">
                         <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
-                        Remember me
+                        Recordar
                     </label>
                 </div>
                 <p>
-                    If you have not created an account yet, then please <a href="signup.php">register a new account</a> first.
+                    Si no ha creado unca cuenta todavia, por favor <a href="signup.php">registre una nueva cuenta</a>.
                 </p>
                 <button type="submit" name="login" class="form-submit">Login</button>
                 

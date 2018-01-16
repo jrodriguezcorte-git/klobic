@@ -3,7 +3,7 @@
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
+                <span class="sr-only">Navegación</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -38,8 +38,8 @@
                                 <li><a href="/admin/">Admin</a></li>
                         <?php }
                         } ?>
-                    <li><a href="/banner-creator/my-banners/">My banners</a></li>
-                    <li class="new-banner"><a href="/banner-creator/">Create new</a></li>
+                    <li><a href="/banner-creator/my-banners/">Mis banners</a></li>
+                    <li class="new-banner"><a href="/banner-creator/">Crear Nuevo</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle profile-image" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                             <img src="https://openclipart.org/download/247320/abstract-user-flat-4.svg" class="img-circle" height="32px" width="32px"> 
@@ -47,7 +47,7 @@
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="/account">Account options</a></li>
+                            <li><a href="/account">Opciones de Cuenta</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="/account?logout">Logout</a></li>
                         </ul>
@@ -59,7 +59,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
                         <li><a href="/auth/login.php">Login</a></li>
-                        <li><a href="/auth/signup.php">Sign Up</a></li>
+                        <li><a href="/auth/signup.php">Registrese</a></li>
                     </li>
                 </ul>
             <?php

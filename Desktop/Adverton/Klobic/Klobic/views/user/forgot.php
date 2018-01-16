@@ -27,16 +27,16 @@ if ($login->isUserLoggedIn() == true) {
     <div class="main-holder">
         <form class="form-horizontal" name="loginform">
             <div class="login-box">
-                <h1>Forgot your password?</h1>
-                <h5>We'll send you an email to restore your password.</h5>
+                <h1>¿Olvidó su contraseña?</h1>
+                <h5>Le enviaremos un correo para restaurar la contraseña</h5>
                 <div id="errors"></div>
                 <div class="form-group">
                     <input type="email" name="user_email" class="form-control" id="login_input_email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" placeholder="Email" />
                 </div>
                 <p>
-                    <a href="login.php">Back to Login Page</a>
+                    <a href="login.php">Ir a la página de Login</a>
                 </p>
-                <button type="submit" name="submit" class="form-submit">Submit</button>
+                <button type="submit" name="submit" class="form-submit">Enviar</button>
                 
                 <?php $token = NoCSRF::generate( 'csrf_token' ); ?>
         	    <input type="hidden" name="csrf_token" value="<?php echo $token; ?>" />

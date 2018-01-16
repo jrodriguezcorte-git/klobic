@@ -29,13 +29,13 @@ class NoCSRF
     {
         if ( !isset( $_SESSION[ 'csrf_' . $key ] ) )
             if($throwException)
-                throw new Exception( 'Missing CSRF session token.' );
+                throw new Exception( 'Perdido CSRF session token.' );
             else
                 return false;
             
         if ( !isset( $origin[ $key ] ) )
             if($throwException)
-                throw new Exception( 'Missing CSRF form token.' );
+                throw new Exception( 'Perdido el CSRF form token.' );
             else
                 return false;
 
@@ -50,7 +50,7 @@ class NoCSRF
         if( self::$doOriginCheck && sha1( $_SERVER['REMOTE_ADDR'] . $_SERVER['HTTP_USER_AGENT'] ) != substr( base64_decode( $hash ), 10, 40 ) )
         {
             if($throwException)
-                throw new Exception( 'Form origin does not match token origin.' );
+                throw new Exception( 'El origen del formulario no coincide con el origen del token.' );
             else
                 return false;
         }
@@ -58,14 +58,14 @@ class NoCSRF
         // Check if session token matches form token
         if ( $origin[ $key ] != $hash )
             if($throwException)
-                throw new Exception( 'Invalid CSRF token.' );
+                throw new Exception( 'Invalido CSRF token.' );
             else
                 return false;
 
         // Check for token expiration
         if ( $timespan != null && is_int( $timespan ) && intval( substr( base64_decode( $hash ), 0, 10 ) ) + $timespan < time() )
             if($throwException)
-                throw new Exception( 'CSRF token has expired.' );
+                throw new Exception( 'CSRF token ha expirado.' );
             else
                 return false;
 

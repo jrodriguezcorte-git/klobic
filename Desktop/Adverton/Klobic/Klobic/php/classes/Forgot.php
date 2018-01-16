@@ -58,7 +58,7 @@ class Forgot
 	            
 	        // check login form contents
 	        if (empty($user_email_input)) {
-	            $this->errors[] = "Email field was empty.";
+	            $this->errors[] = "El correo no puede ser vacío.";
 	        } elseif (!empty($user_email_input)) {
 	
 	            // create a database connection, using the constants from config/db.php (which we loaded in index.php)
@@ -110,26 +110,26 @@ class Forgot
 						));
 						
 						if(!curl_exec($curl))
-							$this->errors[] = "Message could not be sent. Try again.";
+							$this->errors[] = "El mensaje no pudo ser enviado. Intente nuevamente.";
 						else
-							$this->messages[] = 'We have sent an email with the details to reset your password.';
+							$this->messages[] = 'Nosotros hemos enviado un correo para resetear la contraseña';
 					    
 						// Close request to clear up some resources
 						curl_close($curl);
 	                } else {
-	                    $this->errors[] = "This user does not exist.";
+	                    $this->errors[] = "El usuario no existe.";
 	                }
 	            } else {
-	                $this->errors[] = "Database connection problem.";
+	                $this->errors[] = "Problema en la conexión de la base de datos.";
 	            }
 	        }
-	        $this->messages[] = 'CSRF check passed. Form parsed.';
+	        $this->messages[] = 'CSRF ha pasado.';
 	    }
 	    catch ( Exception $e )
 	    {
 	        // CSRF attack detected
 	        // $result = $e->getMessage(); 
-	        $result = 'Invalid token. Please <a href="/auth/forgot.php">reload this page</a>.';
+	        $result = 'Token Inválido. Por favor <a href="/auth/forgot.php">recargar esta página</a>.';
 	        $this->errors[] = $result;
 			
 	    }		        

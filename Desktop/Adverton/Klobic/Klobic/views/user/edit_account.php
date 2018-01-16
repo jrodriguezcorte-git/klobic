@@ -57,7 +57,7 @@ if ($loggedIn == false) {
             <div class="login-box">
                 
                 <?php if(empty($_SESSION['need_change_password']) || $_SESSION['need_change_password'] === false){ ?>
-                    <h1>Edit your account</h1>
+                    <h1>Editar tu cuenta</h1>
                     <div id="errors"></div>
                     <div class="form-group">
                         <input type="text" name="user_name" class="form-control" id="login_input_name" placeholder="Name" value="<?=$_SESSION['user_name']?>" pattern="[a-zA-Z\s]{2,64}" required />
@@ -69,7 +69,7 @@ if ($loggedIn == false) {
                         <input type="password" class="form-control" id="password" name="user_password_old" id="login_input_password_new" placeholder="Old password" required />
                     </div>
                 <?php } else { ?>
-                    <h1>Restore your password</h1>
+                    <h1>Restablece tu contraseña</h1>
                     <div id="errors"></div>
                 <?php } ?>
                 
@@ -79,7 +79,7 @@ if ($loggedIn == false) {
                 <div class="form-group">
                     <input type="password" class="form-control" id="password" name="user_password_repeat" id="login_input_password_repeat" placeholder="Repeat new password" />
                 </div>
-                <button type="submit" name="update-account" class="form-submit">Update account</button>
+                <button type="submit" name="update-account" class="form-submit">Actualizar contraseña</button>
                 
                 <?php $token = NoCSRF::generate( 'csrf_token' ); ?>
         	    <input type="hidden" name="csrf_token" value="<?php echo $token; ?>" />

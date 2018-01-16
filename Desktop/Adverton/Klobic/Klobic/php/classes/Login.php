@@ -55,14 +55,14 @@ class Login
 	    {	
 	        // Run CSRF check, on POST data, in exception mode, for 10 minutes, in one-time mode.
 	        NoCSRF::check( 'csrf_token', $_POST, true, 60*10, true );
-	        //    die(var_dump(DB_HOST.' '.DB_USER.' '.DB_PASS.' '.DB_NAME));
+	        //  die(var_dump(DB_HOST.' '.DB_USER.' '.DB_PASS.' '.DB_NAME));
 	        // check login form contents
 	        if (empty($user_email_input)) {
-	            $this->errors[] = "Email field was empty.";
+	            $this->errors[] = "El email no debe ser vacío.";
 	        } elseif (empty($user_password_input)) {
-	            $this->errors[] = "Password field was empty.";
+	            $this->errors[] = "La contraseña no debe ser vacía.";
 	        } elseif (!empty($user_email_input) && !empty($user_password_input)) {
-	
+                  //   die(var_dump(DB_HOST.' '.DB_USER.' '.DB_PASS.' '.DB_NAME));   
 	            // create a database connection, using the constants from config/db.php (which we loaded in index.php)
 	            $this->db_connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 	
@@ -108,22 +108,22 @@ class Login
 							$result_of_login_check->close();
 	
 	                    } else {
-	                        $this->errors[] = "Wrong password. Try again.";
+	                        $this->errors[] = "Contraseña incorrecta. Intente nuevamente.";
 	                    }
 	                } else {
-	                    $this->errors[] = "This user does not exist.";
+	                    $this->errors[] = "El usuario no existe.";
 	                }
 	            } else {
-	                $this->errors[] = "Database connection problem.";
+	                $this->errors[] = "Problema de conexión con la base de datos.";
 	            }
 	        }
-	        $this->messages[] = 'CSRF check passed. Form parsed.';
+	        $this->messages[] = 'CSRF pasó.';
 	    }
 	    catch ( Exception $e )
 	    {
 	        // CSRF attack detected
 	        // $result = $e->getMessage(); 
-	        $result = 'Invalid token. Please <a href="/auth/login.php">reload this page</a>.';
+	        $result = 'Token Inválido, Por favor <a href="/auth/login.php">recargar esta página</a>.';
 	        $this->errors[] = $result;
 			
 	    }		        
@@ -138,7 +138,7 @@ class Login
         $_SESSION = array();
         session_destroy();
         // return a little feeedback message
-        $this->messages[] = "You have been logged out.";
+        $this->messages[] = "Ha cerrado sesión.";
     }
 
     /**

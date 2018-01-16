@@ -20,10 +20,10 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/views/tpl/head.php');
     <?php } ?>
     <script>
     $(document).ready(function () {
-        var name = $('<input>').attr('type', 'text').attr('name', 'user_name').attr('id', 'login_input_name').attr('pattern', '[a-zA-Z0-9\s]{2,64}').attr('placeholder', 'Name').attr('class', 'form-control'),
+        var name = $('<input>').attr('type', 'text').attr('name', 'user_name').attr('id', 'login_input_name').attr('pattern', '[a-zA-Z0-9\s]{2,64}').attr('placeholder', 'Nombre').attr('class', 'form-control'),
         email = $('<input>').attr('type', 'email').attr('name', 'user_email').attr('id', 'login_input_email').attr('pattern', '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$').attr('placeholder', 'Email').attr('class', 'form-control'),
-        password = $('<input>').attr('type', 'password').attr('name', 'user_password_new').attr('id', 'login_input_password_new').attr('placeholder', 'Password').attr('class', 'form-control'),
-        passwordConfirm = $('<input>').attr('type', 'password').attr('name', 'user_password_repeat').attr('id', 'login_input_password_repeat').attr('placeholder', 'Repeat password').attr('class', 'form-control'),
+        password = $('<input>').attr('type', 'password').attr('name', 'user_password_new').attr('id', 'login_input_password_new').attr('placeholder', 'Contraseña').attr('class', 'form-control'),
+        passwordConfirm = $('<input>').attr('type', 'password').attr('name', 'user_password_repeat').attr('id', 'login_input_password_repeat').attr('placeholder', 'Repetir contraseña').attr('class', 'form-control'),
         button = $('<button>').attr('type', 'submit').attr('name', 'register').attr('class', 'form-submit').html('Sign up');
         
         name.appendTo($('.form-group')[0]);
@@ -40,16 +40,16 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/views/tpl/head.php');
     <div class="main-holder">
         <form class="form-horizontal" action='signup.php' method="post" name="registerform">
             <div class="login-box">
-                <h1>Sign up</h1>
+                <h1>Registrese</h1>
                 <div id="errors"></div>
                 <div class="form-group"></div>
                 <div class="form-group"></div>
                 <div class="form-group"></div>
                 <div class="form-group"></div>
                 <p>
-                    <a href="login.php">Back to Login Page</a>
+                    <a href="login.php">Ir a la página de Login</a>
                 </p>
-                <button type="submit" name="register" class="form-submit">Sign up</button>
+                <button type="submit" name="register" class="form-submit">Registrarse</button>
                 
                 <?php $token = NoCSRF::generate( 'csrf_token' ); ?>
         	    <input type="hidden" name="csrf_token" value="<?php echo $token; ?>" />
