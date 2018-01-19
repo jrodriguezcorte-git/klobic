@@ -15,7 +15,7 @@ header('Content-type: image/png');
 
 if (!file_exists($localFile)) {
     require_once($_SERVER['DOCUMENT_ROOT'].'/php/saveImage.php');
-    $response = getImageRawData("https://cdn.bannersnack.com/textures/". $type .'/'. $file . $params);
+    $response = getImageRawData("https://creator.klobic.com/textures/". $type .'/'. $file . $params);
     
     if(PRODUCTION && $response['code'] == '200') 
         $imageSaver = new SaveImage($response['content'], '/photos/textures/'. $type .'_'. $file .'.png');

@@ -679,7 +679,7 @@ switch ($page) {
         break;
 
     case 'html5editor/get-unsplash-images':
-        $stockURL = "http://www.bannersnack.com/ajax.php?page=html5editor%2Fget-unsplash-images&p=".$_GET['p']."&ipp=".$_GET['ipp']."&search=".$_GET['search'];
+        $stockURL = "https://creator.klobic.com/ajax.php?page=html5editor%2Fget-unsplash-images&p=".$_GET['p']."&ipp=".$_GET['ipp']."&search=".$_GET['search'];
         $response = get_web_page($stockURL, array('Cookie: PHPSESSID='.PHPSESSID));
         
         if(json_decode($response)->code == 501){

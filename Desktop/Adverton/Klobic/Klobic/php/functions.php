@@ -141,7 +141,7 @@ function loginToBannerSnack() {
         CURLOPT_TIMEOUT        => 120,    // time-out on response
     );
 
-    $ch = curl_init("https://www.bannersnack.com/ajax.php?page=auth%2Flogin&email=bola.gasa%40gmail.com&password=aSf73jh5m605Kjg8gGgG&rememberMe=true");
+    $ch = curl_init("https://creator.klobic.com/ajax.php?page=auth%2Flogin&email=bola.gasa%40gmail.com&password=aSf73jh5m605Kjg8gGgG&rememberMe=true");
     curl_setopt_array($ch, $options);
 
     $content  = curl_exec($ch);

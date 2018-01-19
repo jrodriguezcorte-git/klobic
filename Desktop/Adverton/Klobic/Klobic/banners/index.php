@@ -93,7 +93,7 @@ if($action == 'images'){
     
     if (!file_exists($localFile)) {
         require_once($_SERVER['DOCUMENT_ROOT'].'/php/saveImage.php');
-        $response = getImageRawData("http://cdn.bannersnack.com/banners/". $hash . "/" . $action . "/" .$file . $params);
+        $response = getImageRawData("https://creator.klobic.com/banners/". $hash . "/" . $action . "/" .$file . $params);
         
         if(PRODUCTION && $response['code'] == '200') 
             $imageSaver = new SaveImage(chunk_split(base64_encode($response['content'])), '/photos/'.$type.'/'.$hash.'.png');
@@ -260,7 +260,7 @@ if($action == 'embed'){
         $bannerJson = json_encode($bannerJson);
 	    
 	} else {
-        $response = get_web_page("http://cdn.bannersnack.com/banners/". $hash . "/" . $action . "/" .$file . $params);
+        $response = get_web_page("https://creator.klobic.com/banners/". $hash . "/" . $action . "/" .$file . $params);
         $html = str_get_html($response);
         $script_tag = $html->find('script', 1)->innertext;
         

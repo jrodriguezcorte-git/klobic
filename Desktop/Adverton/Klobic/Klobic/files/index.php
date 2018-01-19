@@ -34,7 +34,7 @@ header('Content-type: image/'.$extension);
     
 if (!file_exists($localFile)) {
     require_once($_SERVER['DOCUMENT_ROOT'].'/php/saveImage.php');
-    $response = getImageRawData("https://cdn.bannersnack.com/files/". $file . $params);
+    $response = getImageRawData("https://creator.klobic.com/files/". $file . $params);
     
     if(PRODUCTION && $response['code'] == '200') 
         $imageSaver = new SaveImage($response['content'], '/photos/files/'.$file.'.png');

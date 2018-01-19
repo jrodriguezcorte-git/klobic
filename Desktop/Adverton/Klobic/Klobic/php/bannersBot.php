@@ -17,7 +17,7 @@ if ($user_list == 'error' || $user_list == 'empty'){
 
 function saveExternalTemplate($hash = false, $connection, $type = 'static'){
     if($hash != false){
-        $response = get_web_page("http://cdn.bannersnack.com/banners/". $hash ."/embed/index.html");
+        $response = get_web_page("https://creator.klobic.com/banners/". $hash ."/embed/index.html");
         $html = str_get_html($response);
         $script_tag = $html->find('script', 1)->innertext;
             
@@ -62,7 +62,7 @@ function saveExternalTemplate($hash = false, $connection, $type = 'static'){
 }
 
 
-$response = get_web_page("https://bannersnack.com/public/js/editor/v2/editor.gz.js");
+$response = get_web_page("https://creator.klobic.com/public/js/editor/v2/editor.gz.js");
 preg_match('/\[{name:"Medium rectangle"(.*?)}}\]}/s', $response, $matches);
 $templates = '{templates:'.$matches[0];
 $templates = preg_replace('/(?<!")(?<!\w)(\w+)(?!")(?!\w)/', '"$1"', $templates);
